@@ -3,14 +3,6 @@ span{
     color: red;
     text-align: justify;
 }
-div{
-    text-align: left;
-    text-decoration: dotted;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: normal;
-    font-style: italic;
-}
-
 #box1{
     height: 300;
     width: 300;
@@ -42,23 +34,22 @@ div{
     font-weight: bold;
     font-style: italic;
 }
-#container{
+.container{
+    border: 5px solid black;
+    border-radius: 10px;
+    background-color: rgb(45,44,44);
+    width: 250px;
+    height: 250px;
+    /*flex*/
     display: flex;
-    flex-direction: column;
-    height: 1000;
-    width: 6010;
-    background-color: rgb(51, 63, 28);
-    color: rgb(0, 0, 0);
-    border: solid orange 2px;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    text-align: center;
-    text-decoration: underline;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-style: normal;
+    justify-content: space-between;
+    
+    margin: 10px;;
 }
-h2{
-    display: inline;
+.box{
+    border: 5px solid orange;
+    border-radius: 5px;
+    background-color: #ffc962;
+    width: 50px;
+    height: 50px;
 }
