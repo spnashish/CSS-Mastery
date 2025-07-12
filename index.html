@@ -3,25 +3,919 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Core CSS Concepts Tutorial</title>
+    <style>
+        /* ===========================================
+           RESET AND BASE STYLES
+           =========================================== */
+        
+        /* Universal selector - applies to all elements */
+        * {
+            /* Border-box makes width/height include padding and border */
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Root element - define CSS custom properties (variables) */
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #64748b;
+            --accent-color: #f59e0b;
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        /* Body styling - sets default font and layout */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6; /* Unitless line-height is recommended */
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+            min-height: 100vh; /* Full viewport height */
+        }
+        
+        /* ===========================================
+           TYPOGRAPHY CONCEPTS
+           =========================================== */
+        
+        /* Heading hierarchy - semantic and visual */
+        h1 {
+            font-size: 2.5rem; /* rem units scale with root font size */
+            font-weight: 700; /* 100-900 scale, 400=normal, 700=bold */
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 1.5rem 0 0.5rem 0;
+            color: var(--text-color);
+        }
+        
+        /* Paragraph styling */
+        p {
+            margin-bottom: 1rem;
+            /* Text properties */
+            text-align: left; /* left | center | right | justify */
+            line-height: 1.6; /* Space between lines */
+            letter-spacing: 0.01em; /* Space between characters */
+            word-spacing: 0.05em; /* Space between words */
+        }
+        
+        /* ===========================================
+           CONTAINER AND LAYOUT
+           =========================================== */
+        
+        /* Main container - centers content with max width */
+        .container {
+            max-width: 1200px; /* Maximum width */
+            margin: 0 auto; /* Center horizontally */
+            padding: 2rem; /* Inner spacing */
+            background: var(--bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        /* ===========================================
+           CSS SELECTORS DEMONSTRATION
+           =========================================== */
+        
+        /* Class selector - targets elements with class="demo-section" */
+        .demo-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: var(--border-radius);
+            background: #f9fafb;
+        }
+        
+        /* ID selector - targets element with id="unique-element" */
+        #unique-element {
+            background-color: #fef3c7;
+            color: #92400e;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+        }
+        
+        /* Attribute selector - targets elements with specific attributes */
+        [data-type="example"] {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            padding: 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        /* Descendant combinator - targets .child inside .parent */
+        .parent .child {
+            background-color: #dcfce7;
+            padding: 0.5rem;
+            margin: 0.25rem;
+            border-left: 3px solid var(--success-color);
+        }
+        
+        /* Child combinator - targets direct children only */
+        .parent > .direct-child {
+            background-color: #fef3c7;
+            padding: 0.5rem;
+            margin: 0.25rem;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        /* Adjacent sibling - targets element immediately after */
+        .first-sibling + .second-sibling {
+            background-color: #fce7f3;
+            padding: 0.5rem;
+            border-left: 3px solid #ec4899;
+        }
+        
+        /* Pseudo-classes - target elements in specific states */
+        .hover-demo:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px); /* Move up slightly */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: var(--transition); /* Smooth animation */
+        }
+        
+        /* ===========================================
+           BOX MODEL DEMONSTRATION
+           =========================================== */
+        
+        .box-model-demo {
+            /* Content area */
+            width: 200px;
+            height: 100px;
+            
+            /* Padding - space between content and border */
+            padding: 20px; /* All sides */
+            /* padding: 10px 20px; */ /* Vertical | Horizontal */
+            /* padding: 10px 15px 20px 25px; */ /* Top | Right | Bottom | Left */
+            
+            /* Border - line around padding and content */
+            border: 3px solid var(--primary-color);
+            /* border-width: 3px; */
+            /* border-style: solid; */ /* solid | dashed | dotted | double */
+            /* border-color: var(--primary-color); */
+            
+            /* Margin - space outside the border */
+            margin: 30px auto; /* Top/Bottom | Left/Right (auto centers) */
+            
+            /* Background and text styling */
+            background-color: #e0f2fe;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            /* Box-sizing controls how width/height are calculated */
+            box-sizing: border-box; /* Include padding and border in width/height */
+            /* box-sizing: content-box; */ /* Default - only content area */
+        }
+        
+        /* ===========================================
+           FLEXBOX LAYOUT SYSTEM
+           =========================================== */
+        
+        /* Flex container - parent element */
+        .flex-container {
+            display: flex; /* Enable flexbox */
+            
+            /* Main axis direction (default: row) */
+            flex-direction: row; /* row | row-reverse | column | column-reverse */
+            
+            /* Wrap behavior */
+            flex-wrap: wrap; /* nowrap | wrap | wrap-reverse */
+            
+            /* Align items along main axis (horizontal if row) */
+            justify-content: space-between; /* flex-start | flex-end | center | 
+                                              space-between | space-around | space-evenly */
+            
+            /* Align items along cross axis (vertical if row) */
+            align-items: center; /* stretch | flex-start | flex-end | center | baseline */
+            
+            /* Gap between flex items */
+            gap: 1rem; /* Shorthand for row-gap and column-gap */
+            
+            background-color: #f3f4f6;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+        }
+        
+        /* Flex items - child elements */
+        .flex-item {
+            /* Flex grow - how much item should grow */
+            flex-grow: 0; /* 0 = don't grow, 1+ = grow proportionally */
+            
+            /* Flex shrink - how much item should shrink */
+            flex-shrink: 1; /* 0 = don't shrink, 1+ = shrink proportionally */
+            
+            /* Flex basis - initial size before free space distribution */
+            flex-basis: auto; /* auto | <length> | <percentage> */
+            
+            /* Shorthand: flex: <grow> <shrink> <basis> */
+            flex: 0 1 auto;
+            /* Common values:
+               flex: 1; (grow to fill space)
+               flex: none; (don't grow or shrink)
+               flex: auto; (grow and shrink based on content) */
+            
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            min-width: 100px;
+        }
+        
+        /* Special flex item that grows */
+        .flex-grow {
+            flex-grow: 1; /* Takes up remaining space */
+            background-color: var(--success-color);
+        }
+        
+        /* ===========================================
+           CSS GRID LAYOUT SYSTEM
+           =========================================== */
+        
+        /* Grid container */
+        .grid-container {
+            display: grid; /* Enable CSS Grid */
+            
+            /* Define columns */
+            grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+            /* Alternative syntaxes:
+               200px 1fr 100px - fixed and flexible sizes
+               repeat(auto-fit, minmax(200px, 1fr)) - responsive columns
+               minmax(100px, 1fr) - minimum and maximum sizes */
+            
+            /* Define rows */
+            grid-template-rows: repeat(2, 150px); /* 2 rows of 150px each */
+            /* auto - size based on content */
+            
+            /* Gap between grid items */
+            gap: 1rem; /* Shorthand for row-gap and column-gap */
+            
+            /* Align items within their grid cells */
+            justify-items: stretch; /* start | end | center | stretch */
+            align-items: center; /* start | end | center | stretch */
+            
+            background-color: #f3f4f6;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+        }
+        
+        /* Grid items */
+        .grid-item {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Grid item that spans multiple columns */
+        .grid-span {
+            grid-column: span 2; /* Span 2 columns */
+            /* Alternative: grid-column: 1 / 3; */ /* From line 1 to line 3 */
+            background-color: var(--danger-color);
+        }
+        
+        /* ===========================================
+           POSITIONING CONCEPTS
+           =========================================== */
+        
+        /* Relative positioning - moves element from normal position */
+        .relative-demo {
+            position: relative;
+            top: 10px; /* Move down 10px from normal position */
+            left: 20px; /* Move right 20px from normal position */
+            background-color: #ddd6fe;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            /* Original space is preserved in document flow */
+        }
+        
+        /* Absolute positioning - removed from document flow */
+        .absolute-container {
+            position: relative; /* Creates positioning context for absolute children */
+            height: 200px;
+            background-color: #f3f4f6;
+            border: 2px dashed #9ca3af;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+        }
+        
+        .absolute-demo {
+            position: absolute;
+            top: 20px; /* 20px from top of positioned ancestor */
+            right: 20px; /* 20px from right of positioned ancestor */
+            background-color: var(--danger-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            /* Element is removed from document flow */
+        }
+        
+        /* Fixed positioning - relative to viewport */
+        .fixed-demo {
+            position: fixed;
+            bottom: 20px; /* 20px from bottom of viewport */
+            right: 20px; /* 20px from right of viewport */
+            background-color: var(--success-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            z-index: 1000; /* High z-index to appear on top */
+            /* Stays in place when scrolling */
+        }
+        
+        /* ===========================================
+           COLORS AND BACKGROUNDS
+           =========================================== */
+        
+        .color-demo {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: var(--border-radius);
+        }
+        
+        /* Hex colors - most common format */
+        .hex-color {
+            background-color: #ff6b6b; /* 6-digit hex */
+            color: #ffffff; /* Can also use 3-digit: #fff */
+        }
+        
+        /* RGB colors - Red, Green, Blue (0-255) */
+        .rgb-color {
+            background-color: rgb(107, 203, 196);
+            color: rgb(255, 255, 255);
+        }
+        
+        /* RGBA colors - RGB with Alpha (transparency 0-1) */
+        .rgba-color {
+            background-color: rgba(59, 130, 246, 0.8); /* 80% opacity */
+            color: rgba(255, 255, 255, 1);
+        }
+        
+        /* HSL colors - Hue, Saturation, Lightness */
+        .hsl-color {
+            background-color: hsl(280, 100%, 70%); /* Hue: 0-360°, Sat/Light: 0-100% */
+            color: hsl(0, 0%, 100%);
+        }
+        
+        /* CSS Custom Properties (Variables) */
+        .variable-color {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+        }
+        
+        /* Gradient backgrounds */
+        .gradient-demo {
+            /* Linear gradient */
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            /* Direction: to right, to bottom, 45deg, etc. */
+            color: white;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: var(--border-radius);
+        }
+        
+        .radial-gradient {
+            /* Radial gradient */
+            background: radial-gradient(circle, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: var(--border-radius);
+        }
+        
+        /* ===========================================
+           RESPONSIVE DESIGN
+           =========================================== */
+        
+        .responsive-demo {
+            background-color: #fef3c7;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        /* Mobile First Media Queries (recommended approach) */
+        
+        /* Base styles (mobile) */
+        .responsive-text {
+            font-size: 1rem;
+            color: #dc2626;
+        }
+        
+        .responsive-text::before {
+            content: "📱 Mobile: ";
+        }
+        
+        /* Tablet and up (768px+) */
+        @media screen and (min-width: 768px) {
+            .responsive-demo {
+                background-color: #dbeafe;
+            }
+            
+            .responsive-text {
+                font-size: 1.25rem;
+                color: #2563eb;
+            }
+            
+            .responsive-text::before {
+                content: "📱 Tablet: ";
+            }
+        }
+        
+        /* Desktop and up (1024px+) */
+        @media screen and (min-width: 1024px) {
+            .responsive-demo {
+                background-color: #dcfce7;
+            }
+            
+            .responsive-text {
+                font-size: 1.5rem;
+                color: #16a34a;
+            }
+            
+            .responsive-text::before {
+                content: "🖥️ Desktop: ";
+            }
+        }
+        
+        /* Large desktop (1200px+) */
+        @media screen and (min-width: 1200px) {
+            .responsive-demo {
+                background-color: #fef3c7;
+            }
+            
+            .responsive-text {
+                font-size: 1.75rem;
+                color: #ca8a04;
+            }
+            
+            .responsive-text::before {
+                content: "🖥️ Large Desktop: ";
+            }
+        }
+        
+        /* ===========================================
+           TRANSITIONS AND ANIMATIONS
+           =========================================== */
+        
+        /* CSS Transitions - smooth changes between states */
+        .transition-demo {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            margin: 0.5rem 0;
+            
+            /* Transition property syntax:
+               transition: property duration timing-function delay; */
+            transition: all 0.3s ease-in-out;
+            /* Multiple transitions:
+               transition: background-color 0.3s ease, transform 0.2s ease; */
+        }
+        
+        .transition-demo:hover {
+            background-color: var(--danger-color);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* CSS Animations with Keyframes */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        /* Apply animations */
+        .bounce-animation {
+            animation: bounce 2s infinite;
+            background-color: var(--success-color);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin: 0.5rem;
+            display: inline-block;
+        }
+        
+        .rotate-animation {
+            animation: rotate 3s linear infinite;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin: 0.5rem;
+            display: inline-block;
+        }
+        
+        .pulse-animation {
+            animation: pulse 1.5s ease-in-out infinite;
+            background-color: var(--danger-color);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin: 0.5rem;
+            display: inline-block;
+        }
+        
+        /* ===========================================
+           TRANSFORM PROPERTIES
+           =========================================== */
+        
+        .transform-demo {
+            background-color: #f3f4f6;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .transform-item {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        /* 2D Transforms */
+        .translate {
+            transform: translate(20px, 10px); /* Move X, Y */
+            /* translateX(20px) translateY(10px) */
+        }
+        
+        .scale {
+            transform: scale(1.2); /* Uniform scaling */
+            /* scale(1.2, 0.8) - different X, Y scaling */
+        }
+        
+        .rotate {
+            transform: rotate(15deg); /* Clockwise rotation */
+            transform-origin: center; /* Rotation point */
+        }
+        
+        .skew {
+            transform: skew(15deg, 5deg); /* X-axis, Y-axis skew */
+        }
+        
+        /* Multiple transforms - order matters! Applied right to left */
+        .multiple-transform {
+            transform: translate(10px, 5px) rotate(10deg) scale(1.1);
+        }
+        
+        /* ===========================================
+           ACCESSIBILITY AND PERFORMANCE
+           =========================================== */
+        
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Focus styles for keyboard navigation */
+        .interactive:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .demo-section {
+                border-width: 2px;
+            }
+        }
+        
+        /* ===========================================
+           UTILITY CLASSES
+           =========================================== */
+        
+        /* Text utilities */
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
+        
+        /* Display utilities */
+        .block { display: block; }
+        .inline { display: inline; }
+        .inline-block { display: inline-block; }
+        .hidden { display: none; }
+        
+        /* Spacing utilities */
+        .mt-1 { margin-top: 0.25rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        
+        /* Color utilities */
+        .text-primary { color: var(--primary-color); }
+        .text-success { color: var(--success-color); }
+        .text-danger { color: var(--danger-color); }
+        
+        .bg-primary { background-color: var(--primary-color); }
+        .bg-success { background-color: var(--success-color); }
+        .bg-danger { background-color: var(--danger-color); }
+    </style>
 </head>
 <body>
-    <!--Inline CSS-->
-    <h1 style="color:red; text-align: center; background-color: antiquewhite; ">CSS Mastery</h1>
-    <!--Internal CSS-->
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam, nisi!</p>
-    
-    <div class="container" id="flex">
-        <div class="box">
-            <h2>1</h2>
-        </div>
-        <div class="box">
-            <h2>2</h2>
-        </div>
-        <div class="box">
-            <h2>3</h2>
-        </div>
+    <div class="container">
+        <h1>🎨 Core CSS Concepts Tutorial</h1>
+        <p class="text-center">Learn essential CSS concepts with detailed comments and interactive examples</p>
+        
+        <!-- CSS SELECTORS SECTION -->
+        <section class="demo-section">
+            <h2>1. CSS Selectors & Specificity</h2>
+            
+            <h3>Basic Selectors</h3>
+            <div id="unique-element">ID Selector (#unique-element)</div>
+            <div class="hover-demo">Class Selector (.hover-demo) - Hover me!</div>
+            <div data-type="example">Attribute Selector ([data-type="example"])</div>
+            <div data-type="example">Another Attribute Example</div>
+            
+            <h3>Combinators</h3>
+            <div class="parent">
+                Parent Element
+                <div class="child">Descendant Child (.parent .child)</div>
+                <div class="direct-child">Direct Child (.parent > .direct-child)</div>
+                <div class="child">
+                    Another Child
+                    <div class="child">Nested Child (also matches .parent .child)</div>
+                </div>
+            </div>
+            
+            <div class="first-sibling">First Sibling</div>
+            <div class="second-sibling">Adjacent Sibling (.first-sibling + .second-sibling)</div>
+            
+            <p><strong>Specificity Order:</strong> Inline styles (1000) > IDs (100) > Classes/Attributes/Pseudo-classes (10) > Elements (1)</p>
+        </section>
+        
+        <!-- BOX MODEL SECTION -->
+        <section class="demo-section">
+            <h2>2. CSS Box Model</h2>
+            <p>Every element is a rectangular box with content, padding, border, and margin.</p>
+            
+            <div class="box-model-demo">
+                Box Model Demo<br>
+                <small>Width: 200px + Padding: 40px + Border: 6px = Total: 246px (content-box)<br>
+                With box-sizing: border-box, total width = 200px</small>
+            </div>
+            
+            <p><strong>Box-sizing values:</strong></p>
+            <ul>
+                <li><code>content-box</code> (default): Width/height only includes content</li>
+                <li><code>border-box</code> (recommended): Width/height includes content, padding, and border</li>
+            </ul>
+        </section>
+        
+        <!-- FLEXBOX SECTION -->
+        <section class="demo-section">
+            <h2>3. Flexbox Layout</h2>
+            <p>Flexbox is a one-dimensional layout method for arranging items in rows or columns.</p>
+            
+            <h3>Flex Container Properties</h3>
+            <div class="flex-container">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item flex-grow">Item 2 (flex-grow: 1)</div>
+                <div class="flex-item">Item 3</div>
+            </div>
+            
+            <p><strong>Key Flex Properties:</strong></p>
+            <ul>
+                <li><code>justify-content</code>: Aligns items along main axis</li>
+                <li><code>align-items</code>: Aligns items along cross axis</li>
+                <li><code>flex-grow</code>: How much an item should grow</li>
+                <li><code>flex-shrink</code>: How much an item should shrink</li>
+                <li><code>flex-basis</code>: Initial size before free space distribution</li>
+            </ul>
+        </section>
+        
+        <!-- CSS GRID SECTION -->
+        <section class="demo-section">
+            <h2>4. CSS Grid Layout</h2>
+            <p>CSS Grid is a two-dimensional layout system for creating complex layouts.</p>
+            
+            <div class="grid-container">
+                <div class="grid-item">Grid Item 1</div>
+                <div class="grid-item">Grid Item 2</div>
+                <div class="grid-item">Grid Item 3</div>
+                <div class="grid-item grid-span">Spanning Item (grid-column: span 2)</div>
+                <div class="grid-item">Grid Item 5</div>
+            </div>
+            
+            <p><strong>Key Grid Properties:</strong></p>
+            <ul>
+                <li><code>grid-template-columns/rows</code>: Define grid structure</li>
+                <li><code>gap</code>: Space between grid items</li>
+                <li><code>grid-column/row</code>: Position items in grid</li>
+                <li><code>justify-items/align-items</code>: Align items within cells</li>
+            </ul>
+        </section>
+        
+        <!-- POSITIONING SECTION -->
+        <section class="demo-section">
+            <h2>5. CSS Positioning</h2>
+            
+            <h3>Relative Positioning</h3>
+            <div class="relative-demo">
+                Relative positioned element (moved 10px down, 20px right from normal position)
+            </div>
+            
+            <h3>Absolute Positioning</h3>
+            <div class="absolute-container">
+                Container with position: relative
+                <div class="absolute-demo">Absolute positioned</div>
+            </div>
+            
+            <p><strong>Position Values:</strong></p>
+            <ul>
+                <li><code>static</code>: Default, follows normal document flow</li>
+                <li><code>relative</code>: Positioned relative to normal position</li>
+                <li><code>absolute</code>: Positioned relative to nearest positioned ancestor</li>
+                <li><code>fixed</code>: Positioned relative to viewport</li>
+                <li><code>sticky</code>: Switches between relative and fixed</li>
+            </ul>
+        </section>
+        
+        <!-- COLORS SECTION -->
+        <section class="demo-section">
+            <h2>6. Colors & Backgrounds</h2>
+            
+            <h3>Color Systems</h3>
+            <div class="color-demo hex-color">Hex Color (#ff6b6b)</div>
+            <div class="color-demo rgb-color">RGB Color (rgb(107, 203, 196))</div>
+            <div class="color-demo rgba-color">RGBA Color (rgba(59, 130, 246, 0.8))</div>
+            <div class="color-demo hsl-color">HSL Color (hsl(280, 100%, 70%))</div>
+            <div class="color-demo variable-color">CSS Variable (var(--primary-color))</div>
+            
+            <h3>Gradients</h3>
+            <div class="gradient-demo">Linear Gradient (45deg, #ff6b6b, #4ecdc4)</div>
+            <div class="radial-gradient">Radial Gradient (circle, #667eea, #764ba2)</div>
+        </section>
+        
+        <!-- RESPONSIVE DESIGN SECTION -->
+        <section class="demo-section">
+            <h2>7. Responsive Design</h2>
+            <div class="responsive-demo">
+                <div class="responsive-text">Resize your browser to see responsive changes!</div>
+            </div>
+            
+            <p><strong>Media Query Breakpoints:</strong></p>
+            <ul>
+                <li>Mobile: Base styles (no media query)</li>
+                <li>Tablet: <code>@media (min-width: 768px)</code></li>
+                <li>Desktop: <code>@media (min-width: 1024px)</code></li>
+                <li>Large Desktop: <code>@media (min-width: 1200px)</code></li>
+            </ul>
+        </section>
+        
+        <!-- TRANSITIONS & ANIMATIONS SECTION -->
+        <section class="demo-section">
+            <h2>8. Transitions & Animations</h2>
+            
+            <h3>CSS Transitions</h3>
+            <div class="transition-demo">Hover me for smooth transition!</div>
+            
+            <h3>CSS Animations</h3>
+            <div class="bounce-animation">Bouncing</div>
+            <div class="rotate-animation">Rotating</div>
+            <div class="pulse-animation">Pulsing</div>
+            
+            <p><strong>Performance Tip:</strong> Animate <code>transform</code> and <code>opacity</code> for best performance (GPU accelerated).</p>
+        </section>
+        
+        <!-- TRANSFORMS SECTION -->
+        <section class="demo-section">
+            <h2>9. CSS Transforms</h2>
+            <div class="transform-demo">
+                <div class="transform-item">Normal</div>
+                <div class="transform-item translate">Translate</div>
+                <div class="transform-item scale">Scale</div>
+                <div class="transform-item rotate">Rotate</div>
+                <div class="transform-item skew">Skew</div>
+                <div class="transform-item multiple-transform">Multiple</div>
+            </div>
+            
+            <p><strong>Transform Functions:</strong></p>
+            <ul>
+                <li><code>translate(x, y)</code>: Move element</li>
+                <li><code>scale(x, y)</code>: Resize element</li>
+                <li><code>rotate(angle)</code>: Rotate element</li>
+                <li><code>skew(x, y)</code>: Skew element</li>
+            </ul>
+        </section>
+        
+        <!-- BEST PRACTICES SECTION -->
+        <section class="demo-section">
+            <h2>10. CSS Best Practices</h2>
+            <ul>
+                <li>✅ Use <code>box-sizing: border-box</code> globally</li>
+                <li>✅ Mobile-first responsive design with <code>min-width</code> media queries</li>
+                <li>✅ Use CSS custom properties (variables) for consistent theming</li>
+                <li>✅ Prefer <code>rem</code> and <code>em</code> units for scalability</li>
+                <li>✅ Use semantic class names that describe purpose, not appearance</li>
+                <li>✅ Animate <code>transform</code> and <code>opacity</code> for performance</li>
+                <li>✅ Include <code>prefers-reduced-motion</code> for accessibility</li>
+                <li>✅ Use <code>:focus</code> styles for keyboard navigation</li>
+                <li>✅ Organize CSS with comments and consistent formatting</li>
+                <li>✅ Test across different browsers and devices</li>
+            </ul>
+        </section>
     </div>
+    
+    <!-- Fixed positioned element -->
+    <div class="fixed-demo">Fixed Position</div>
+    
+    <script>
+        // JavaScript for enhanced interactivity
+        console.log('🎨 CSS Tutorial loaded! Open DevTools to inspect the CSS.');
+        
+        // Add click handlers for better interaction
+        document.querySelectorAll('.transition-demo, .hover-demo').forEach(element => {
+            element.addEventListener('click', function() {
+                this.style.transform = this.style.transform ? '' : 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+        
+        // Log current viewport size for responsie testing
+        function logViewportSize() {
+            console.log(`Viewport: ${window.innerWidth}px × ${window.innerHeight}px`);
+        }
+        
+        window.addEventListener('resize', logViewportSize);
+        logViewportSize(); // Initial log
+    </script>
 </body>
 </html>

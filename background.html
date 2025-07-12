@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Background Demo</title>
+  <style>
+    /* General styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .section {
+      height: 300px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    /* 1. Background Color */
+    .bg-color {
+      background-color: teal; /* solid color */
+    }
+
+    /* 2. Background Image */
+    .bg-image {
+      background-image: url('https://picsum.photos/id/1018/1000/600');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    /* 3. Background Gradient */
+    .bg-gradient {
+      background: linear-gradient(to right, #ff6a00, #ee0979);
+      /* Gradient from orange to pink */
+    }
+
+    /* 4. Multiple Backgrounds */
+    .bg-multi {
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('https://picsum.photos/id/1015/1000/600');
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="section bg-color">
+    1️⃣ Solid Background Color
+  </div>
+
+  <div class="section bg-image">
+    2️⃣ Background Image (cover + centered)
+  </div>
+
+  <div class="section bg-gradient">
+    3️⃣ Linear Gradient Background
+  </div>
+
+  <div class="section bg-multi">
+    4️⃣ Multiple Backgrounds (Image + Overlay)
+  </div>
+
+</body>
+</html>

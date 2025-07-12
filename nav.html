@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic CSS Navbar</title>
+    <style>
+        /* Reset default margins and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding-top: 60px; /* Space for fixed navbar */
+        }
+
+        /* Navbar container */
+        .navbar {
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Navigation list */
+        .nav-list {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        /* Logo/Brand */
+        .nav-brand {
+            margin-right: auto;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 0;
+        }
+
+        /* Navigation items */
+        .nav-item {
+            margin: 0 5px;
+        }
+
+        /* Navigation links */
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            transition: background-color 0.3s ease;
+            border-radius: 4px;
+        }
+
+        /* Hover effect */
+        .nav-link:hover {
+            background-color: #555;
+        }
+
+        /* Active link */
+        .nav-link.active {
+            background-color: #007bff;
+        }
+
+        /* Main content area */
+        .content {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-list {
+                flex-direction: column;
+                padding: 10px;
+            }
+            
+            .nav-brand {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .nav-item {
+                margin: 2px 0;
+            }
+            
+            .nav-link {
+                padding: 10px 15px;
+                text-align: center;
+            }
+            
+            body {
+                padding-top: 120px; /* More space for mobile navbar */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul class="nav-list">
+            <a href="#" class="nav-brand">MyWebsite</a>
+            <li class="nav-item">
+                <a href="#home" class="nav-link active">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="#about" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="#services" class="nav-link">Services</a>
+            </li>
+            <li class="nav-item">
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+            </li>
+            <li class="nav-item">
+                <a href="#contact" class="nav-link">Contact</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+</body>
+</html>
