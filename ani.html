@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Animation Tutorial</title>
+  <style>
+    /* ===== Box Styling ===== */
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: tomato;
+      margin: 50px auto;
+      border-radius: 10px;
+      /* Apply animation */
+      animation-name: moveAndFade;
+      animation-duration: 3s;
+      animation-iteration-count: infinite; /* Runs forever */
+      animation-timing-function: ease-in-out; /* Smooth start and end */
+    }
+
+    /* ===== Animation Keyframes ===== */
+    @keyframes moveAndFade {
+      0% {
+        transform: translateY(0px);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-100px);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(0px);
+        opacity: 1;
+      }
+    }
+
+    /* ===== Hover Animation Example ===== */
+    .hover-box {
+      width: 100px;
+      height: 100px;
+      background-color: dodgerblue;
+      margin: 50px auto;
+      transition: transform 0.5s ease;
+    }
+
+    .hover-box:hover {
+      transform: rotate(360deg); /* Rotates when you hover */
+    }
+
+    /* ===== One-time Button Animation ===== */
+    .button {
+      padding: 15px 30px;
+      font-size: 16px;
+      background-color: seagreen;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      animation: pulse 2s ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align:center;">🎯 CSS Animation Demo</h2>
+
+  <!-- Continuous animation -->
+  <div class="box"></div>
+  <p style="text-align:center;">This box moves and fades using <b>@keyframes</b></p>
+
+  <!-- Hover animation -->
+  <div class="hover-box"></div>
+  <p style="text-align:center;">This box rotates when you <b>hover</b> over it</p>
+
+  <!-- Button animation -->
+  <div style="text-align:center;">
+    <button class="button">Click Me!</button>
+  </div>
+  <p style="text-align:center;">This button pulses using one-time animation</p>
+
+</body>
+</html>
